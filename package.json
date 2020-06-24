@@ -1,0 +1,25 @@
+{
+  "name": "whatsapp-message-sender",
+  "version": "1.0.0",
+  "description": "send WhatsApp message without saving mobile no.",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DIp15739/WhatsApp-Message-Sender.git"
+  },
+  "keywords": [
+    "HTML",
+    "CSS",
+    "JS"
+  ],
+  "author": "DipVachhani",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DIp15739/WhatsApp-Message-Sender/issues"
+  },
+  "homepage": "https://github.com/DIp15739/WhatsApp-Message-Sender#readme"
+}

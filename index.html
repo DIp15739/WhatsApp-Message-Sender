@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>WhatsApp Message Sender</title>
+    <link rel="shortcut icon" href="img/whatsapp.png" type="image/x-icon" />
+
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta name="author" content="DipVachhani" />
+    <meta
+      name="description"
+      content="send WhatsApp message without saving mobile no"
+    />
+
+    <!-- Bootstrap Core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+
+    <!-- Font Awesome -->
+    <script
+      src="https://kit.fontawesome.com/3a02e35b76.js"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+
+  <body class="bg-dark">
+    <nav class="navbar navbar-dark bg-secondary">
+      <div class="container">
+        <a class="navbar-brand" href="#"
+          ><img src="img/whatsapp.png" /> WhatsApp Message Sender</a
+        >
+      </div>
+    </nav>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 mx-auto mt-3">
+          <div class="card bg-light">
+            <div class="card-body text-center">
+              <div class="form-group">
+                <div class="input-group">
+                  <div class="input-group-prepend" style="width: 75px;">
+                    <input
+                      type="tel"
+                      class="form-control numberOnly"
+                      name="code"
+                      id="code"
+                      placeholder="+91"
+                      maxlength="4"
+                      minlength="2"
+                      value="+91"
+                      required
+                    />
+                  </div>
+                  <input
+                    type="tel"
+                    class="form-control numberOnly"
+                    name="phone"
+                    id="phone"
+                    pattern="[0-9]*"
+                    placeholder="9524xxxx52"
+                    maxlength="10"
+                    minlength="10"
+                    autofocus
+                    required
+                  />
+                </div>
+                <div style="color: red;" id="code-error"></div>
+                <div style="color: red;" id="phone-error"></div>
+              </div>
+              <div class="form-group">
+                <textarea
+                  name="text"
+                  class="form-control"
+                  id="text"
+                  rows="5"
+                  placeholder="Message (optional)"
+                ></textarea>
+              </div>
+              <a href="#" class="btn btn-success" id="send" target="_blank"
+                >Send</a
+              >
+            </div>
+          </div>
+
+          <div class="text-center mt-4 text-white">
+            <h3>About</h3>
+            <p>
+              Here you can send WhatsApp message without saving mobile no. You
+              have to enter mobile no and country code of who you went to send
+              message. it will redirect to your whatsApp application.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+      <div class="col-md-6 mx-auto mt-3 text-white">
+        <ul class="list-inline">
+          <a class="text-white float-right text-decoration-none" href="#">
+            &copy; Dip Vachhani</a
+          >
+
+          <li class="list-inline-item float-left">Follow Me :</li>
+          <li class="list-inline-item float-left">
+            <a
+              class="text-white"
+              href="https://www.linkedin.com/in/dip-vachhani"
+              ><i class="fa fa-linkedin"></i
+            ></a>
+          </li>
+          <li class="list-inline-item float-left">
+            <a class="text-white" href="https://github.com/dIp15739"
+              ><i class="fa fa-github"></i
+            ></a>
+          </li>
+          <li class="list-inline-item float-left">
+            <a class="text-white" href="https://codepen.io/dipv"
+              ><i class="fa fa-codepen"></i
+            ></a>
+          </li>
+          <li class="list-inline-item float-left">
+            <a class="text-white" href="https://www.instagram.com/dipvachhani"
+              ><i class="fa fa-instagram"></i
+            ></a>
+          </li>
+          <li class="list-inline-item float-left">
+            <a class="text-white" href="https://twitter.com/DipVachhani1111"
+              ><i class="fa fa-twitter"></i
+            ></a>
+          </li>
+          <li class="list-inline-item float-left">
+            <a class="text-white" href="https://www.facebook.com/dip.vachhani.7"
+              ><i class="fa fa-facebook"></i
+            ></a>
+          </li>
+        </ul>
+      </div>
+    </footer>
+    <!-- Footer End -->
+
+    <!-- jQuery -->
+    <script src="js/jquery.min.js"></script>
+
+    <!-- custome script -->
+    <script src="js/main.js"></script>
+  </body>
+</html>
