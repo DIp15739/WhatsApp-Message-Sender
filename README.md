@@ -1,6 +1,6 @@
 # WhatsApp Message Sender
 
-[(◔‿◔)!☞ Live Demo](http://whatsappmessagesender.dipv.tk/)
+[(◔‿◔)!☞ Live Demo](http://wpmessage.dipvachhani.tech/)
 
 You can send WhatsApp message without saving mobile no. You have to enter mobile no and country code of who you went to send message. it will redirect to your whatsApp application.
 
