@@ -1,149 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>WhatsApp Message Sender</title>
-    <link rel="shortcut icon" href="img/whatsapp.png" type="image/x-icon" />
 
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description"
+    content="Advanced WhatsApp message sender with modern UI, international support, and comprehensive features" />
+  <meta name="author" content="DipVachhani" />
+  <meta name="theme-color" content="#25D366" />
 
-    <meta name="author" content="DipVachhani" />
-    <meta
-      name="description"
-      content="send WhatsApp message without saving mobile no"
-    />
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.json" />
+  <link rel="apple-touch-icon" href="/img/whatsapp.png" />
 
-    <!-- Bootstrap Core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <!-- Preload critical resources -->
+  <link rel="preload" href="css/styles.css" as="style" />
+  <link rel="preload" href="/js/app.js" as="script" />
 
-    <!-- Font Awesome -->
-    <script
-      src="https://kit.fontawesome.com/3a02e35b76.js"
-      crossorigin="anonymous"
-    ></script>
-  </head>
+  <title>WhatsApp Message Sender</title>
+  <link rel="shortcut icon" href="img/whatsapp.png" type="image/x-icon" />
 
-  <body class="bg-dark">
-    <nav class="navbar navbar-dark bg-secondary">
+  <!-- Modern CSS with CSS Custom Properties -->
+  <link rel="stylesheet" href="css/styles.css" />
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+</head>
+
+<body>
+  <!-- Service Worker Registration -->
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(registration => console.log('SW registered'))
+          .catch(error => console.log('SW registration failed'));
+      });
+    }
+  </script>
+
+  <!-- App Container -->
+  <div id="app" class="app">
+    <!-- Header -->
+    <header class="header">
+      <nav class="nav">
+        <div class="nav__container">
+          <div class="nav__brand">
+            <img src="img/whatsapp.png" alt="WhatsApp" class="nav__logo" />
+            <h1 class="nav__title">WhatsApp Message Sender</h1>
+          </div>
+          <div class="nav__actions">
+            <button id="theme-toggle" class="btn btn--icon" aria-label="Toggle theme">
+              <i class="fas fa-moon"></i>
+            </button>
+            <button id="settings-toggle" class="btn btn--icon" aria-label="Settings">
+              <i class="fas fa-cog"></i>
+            </button>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main">
       <div class="container">
-        <a class="navbar-brand" href="#"
-          ><img src="img/whatsapp.png" /> WhatsApp Message Sender</a
-        >
-      </div>
-    </nav>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-6 mx-auto mt-3">
-          <div class="card bg-light">
-            <div class="card-body text-center">
-              <div class="form-group">
-                <div class="input-group">
-                  <div class="input-group-prepend" style="width: 75px;">
-                    <input
-                      type="tel"
-                      class="form-control numberOnly"
-                      name="code"
-                      id="code"
-                      placeholder="+91"
-                      maxlength="4"
-                      minlength="2"
-                      value="+91"
-                      required
-                    />
+        <!-- Message Form -->
+        <section class="message-form">
+          <div class="card">
+            <div class="card__header">
+              <h2 class="card__title">Send WhatsApp Message</h2>
+              <p class="card__subtitle">Send messages without saving contacts</p>
+            </div>
+
+            <form id="message-form" class="form">
+              <!-- Phone Number Section -->
+              <div class="form__group">
+                <label for="phone-input" class="form__label">Phone Number</label>
+                <div class="phone-input">
+                  <div class="country-selector">
+                    <button type="button" id="country-dropdown" class="country-selector__button">
+                      <img id="country-flag"
+                        src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMTgiIHZpZXdCb3g9IjAgMCAyNCAxOCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHJlY3Qgd2lkdGg9IjI0IiBoZWlnaHQ9IjE4IiBmaWxsPSIjRkZGRkZGIi8+CjxyZWN0IHdpZHRoPSIyNCIgaGVpZ2h0PSI5IiBmaWxsPSIjRkY5OTAwIi8+CjxyZWN0IHk9IjkiIHdpZHRoPSIyNCIgaGVpZ2h0PSI5IiBmaWxsPSIjMDA4NzAwIi8+CjxjaXJjbGUgY3g9IjEyIiBjeT0iOSIgcj0iMyIgZmlsbD0iI0ZGRkZGRiIvPgo8L3N2Zz4K"
+                        alt="India" class="country-selector__flag" />
+                      <span id="country-code">+91</span>
+                      <i class="fas fa-chevron-down"></i>
+                    </button>
+                    <div id="country-dropdown-menu" class="country-dropdown" hidden>
+                      <!-- Countries will be populated by JavaScript -->
+                    </div>
                   </div>
-                  <input
-                    type="tel"
-                    class="form-control numberOnly"
-                    name="phone"
-                    id="phone"
-                    pattern="[0-9]*"
-                    placeholder="9524xxxx52"
-                    maxlength="10"
-                    minlength="10"
-                    autofocus
-                    required
-                  />
+                  <input type="tel" id="phone-input" class="form__input phone-input__field"
+                    placeholder="Enter phone number" autocomplete="tel" required />
                 </div>
-                <div style="color: red;" id="code-error"></div>
-                <div style="color: red;" id="phone-error"></div>
+                <div id="phone-error" class="form__error" hidden></div>
               </div>
-              <div class="form-group">
-                <textarea
-                  name="text"
-                  class="form-control"
-                  id="text"
-                  rows="5"
-                  placeholder="Message (optional)"
-                ></textarea>
+
+              <!-- Message Section -->
+              <div class="form__group">
+                <label for="message-input" class="form__label">
+                  Message
+                  <span id="char-count" class="char-count">0/1000</span>
+                </label>
+                <div class="message-composer">
+                  <div class="message-toolbar">
+                    <button type="button" id="emoji-picker" class="btn btn--icon" aria-label="Add emoji">
+                      <i class="far fa-smile"></i>
+                    </button>
+                    <button type="button" id="template-btn" class="btn btn--icon" aria-label="Message templates">
+                      <i class="fas fa-file-alt"></i>
+                    </button>
+                    <button type="button" id="preview-btn" class="btn btn--icon" aria-label="Preview message">
+                      <i class="fas fa-eye"></i>
+                    </button>
+                  </div>
+                  <textarea id="message-input" class="form__textarea" placeholder="Type your message here..." rows="4"
+                    maxlength="1000"></textarea>
+                </div>
               </div>
-              <a href="#" class="btn btn-success" id="send" target="_blank"
-                >Send</a
-              >
+
+              <!-- Quick Actions -->
+              <div class="quick-actions">
+                <button type="button" id="add-contact" class="btn btn--secondary">
+                  <i class="fas fa-user-plus"></i>
+                  Save Contact
+                </button>
+                <button type="button" id="bulk-message" class="btn btn--secondary">
+                  <i class="fas fa-users"></i>
+                  Bulk Message
+                </button>
+                <button type="button" id="qr-generator" class="btn btn--secondary">
+                  <i class="fas fa-qrcode"></i>
+                  QR Code
+                </button>
+              </div>
+
+              <!-- Send Button -->
+              <button type="submit" id="send-btn" class="btn btn--primary btn--large">
+                <i class="fab fa-whatsapp"></i>
+                Send Message
+              </button>
+            </form>
+          </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+          <div class="features__grid">
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <i class="fas fa-globe"></i>
+              </div>
+              <h3 class="feature-card__title">International Support</h3>
+              <p class="feature-card__description">Support for all 195+ countries with automatic formatting</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <i class="fas fa-mobile-alt"></i>
+              </div>
+              <h3 class="feature-card__title">Mobile Optimized</h3>
+              <p class="feature-card__description">Perfect experience on all devices and screen sizes</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <i class="fas fa-bolt"></i>
+              </div>
+              <h3 class="feature-card__title">Lightning Fast</h3>
+              <p class="feature-card__description">Optimized for speed with modern web technologies</p>
+            </div>
+
+            <div class="feature-card">
+              <div class="feature-card__icon">
+                <i class="fas fa-shield-alt"></i>
+              </div>
+              <h3 class="feature-card__title">Privacy First</h3>
+              <p class="feature-card__description">No data stored, messages sent directly to WhatsApp</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Modals -->
+    <div id="modal-overlay" class="modal-overlay" hidden>
+      <!-- Settings Modal -->
+      <div id="settings-modal" class="modal" hidden>
+        <div class="modal__header">
+          <h3 class="modal__title">Settings</h3>
+          <button class="modal__close" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="settings-group">
+            <h4>Theme</h4>
+            <div class="theme-options">
+              <label class="radio-option">
+                <input type="radio" name="theme" value="auto" checked />
+                <span>Auto</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="theme" value="light" />
+                <span>Light</span>
+              </label>
+              <label class="radio-option">
+                <input type="radio" name="theme" value="dark" />
+                <span>Dark</span>
+              </label>
             </div>
           </div>
 
-          <div class="text-center mt-4 text-white">
-            <h3>About</h3>
-            <p>
-              Here you can send WhatsApp message without saving mobile no. You
-              have to enter mobile no and country code of who you went to send
-              message. it will redirect to your whatsApp application.
-            </p>
+          <div class="settings-group">
+            <h4>Language</h4>
+            <select id="language-select" class="form__select">
+              <option value="en">English</option>
+              <option value="es">Español</option>
+              <option value="fr">Français</option>
+              <option value="de">Deutsch</option>
+              <option value="hi">हिंदी</option>
+            </select>
           </div>
+        </div>
+      </div>
+
+      <!-- Templates Modal -->
+      <div id="templates-modal" class="modal" hidden>
+        <div class="modal__header">
+          <h3 class="modal__title">Message Templates</h3>
+          <button class="modal__close" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div class="templates-grid">
+            <!-- Templates will be populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- QR Code Modal -->
+      <div id="qr-modal" class="modal" hidden>
+        <div class="modal__header">
+          <h3 class="modal__title">QR Code</h3>
+          <button class="modal__close" aria-label="Close">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="modal__body">
+          <div id="qr-code" class="qr-code">
+            <!-- QR code will be generated here -->
+          </div>
+          <p class="qr-instructions">Scan this QR code to open the message in WhatsApp</p>
         </div>
       </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-      <div class="col-md-6 mx-auto mt-3 text-white">
-        <ul class="list-inline">
-          <a class="text-white float-right text-decoration-none" href="#">
-            &copy; Dip Vachhani</a
-          >
+    <!-- Toast Notifications -->
+    <div id="toast-container" class="toast-container"></div>
+  </div>
 
-          <li class="list-inline-item float-left">Follow Me :</li>
-          <li class="list-inline-item float-left">
-            <a
-              class="text-white"
-              href="https://www.linkedin.com/in/dip-vachhani"
-              ><i class="fa fa-linkedin"></i
-            ></a>
-          </li>
-          <li class="list-inline-item float-left">
-            <a class="text-white" href="https://github.com/dIp15739"
-              ><i class="fa fa-github"></i
-            ></a>
-          </li>
-          <li class="list-inline-item float-left">
-            <a class="text-white" href="https://codepen.io/dipv"
-              ><i class="fa fa-codepen"></i
-            ></a>
-          </li>
-          <li class="list-inline-item float-left">
-            <a class="text-white" href="https://www.instagram.com/dipvachhani"
-              ><i class="fa fa-instagram"></i
-            ></a>
-          </li>
-          <li class="list-inline-item float-left">
-            <a class="text-white" href="https://twitter.com/DipVachhani1111"
-              ><i class="fa fa-twitter"></i
-            ></a>
-          </li>
-          <li class="list-inline-item float-left">
-            <a class="text-white" href="https://www.facebook.com/dip.vachhani.7"
-              ><i class="fa fa-facebook"></i
-            ></a>
-          </li>
-        </ul>
-      </div>
-    </footer>
-    <!-- Footer End -->
+  <!-- Modern JavaScript -->
+  <script type="module" src="/js/app.js"></script>
+</body>
 
-    <!-- jQuery -->
-    <script src="js/jquery.min.js"></script>
-
-    <!-- custome script -->
-    <script src="js/main.js"></script>
-  </body>
 </html>

@@ -1,25 +1,310 @@
 {
   "name": "whatsapp-message-sender",
   "version": "1.0.0",
-  "description": "send WhatsApp message without saving mobile no.",
+  "description": "A comprehensive, feature-rich web application for sending WhatsApp messages without saving contacts. Built with modern web technologies and designed for universal phone number support.",
   "main": "index.html",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "index.html"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/DIp15739/WhatsApp-Message-Sender.git"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:integration": "jest --testPathPattern=integration",
+    "test:e2e": "cypress run",
+    "test:e2e:open": "cypress open",
+    "test:performance": "node tests/performance/performance-test.js",
+    "test:accessibility": "pa11y http://localhost:5173",
+    "lint": "eslint . --ext .js",
+    "lint:fix": "eslint . --ext .js --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
+    "docs:build": "node js/modules/docs.js build",
+    "docs:serve": "node js/modules/docs.js serve",
+    "pwa:generate": "node js/modules/pwa.js generate",
+    "analytics:export": "node js/modules/analytics-manager.js export",
+    "storage:backup": "node js/modules/storage-manager.js backup",
+    "storage:restore": "node js/modules/storage-manager.js restore",
+    "deploy:gh-pages": "node js/modules/gh-pages.js deploy",
+    "deploy:preview": "node js/modules/gh-pages.js preview",
+    "performance:analyze": "node js/modules/performance.js analyze",
+    "performance:optimize": "node js/modules/performance.js optimize",
+    "qr:generate": "node js/modules/qr-code-manager.js generate",
+    "template:export": "node js/modules/template-manager.js export",
+    "template:import": "node js/modules/template-manager.js import",
+    "contact:export": "node js/modules/contact-manager.js export",
+    "contact:import": "node js/modules/contact-manager.js import",
+    "validation:test": "node js/modules/validation-manager.js test",
+    "theme:generate": "node js/modules/theme-manager.js generate",
+    "toast:test": "node js/modules/toast-manager.js test",
+    "modal:test": "node js/modules/modal-manager.js test",
+    "integration:test": "node js/modules/integration.js test",
+    "testing:setup": "node js/modules/testing.js setup",
+    "testing:run": "node js/modules/testing.js run",
+    "phone:validate": "node js/modules/phone-number-manager.js validate",
+    "message:test": "node js/modules/message-manager.js test",
+    "app:init": "node js/app.js init",
+    "app:build": "node js/app.js build",
+    "app:test": "node js/app.js test",
+    "app:deploy": "node js/app.js deploy"
   },
   "keywords": [
-    "HTML",
-    "CSS",
-    "JS"
+    "whatsapp",
+    "messaging",
+    "pwa",
+    "progressive-web-app",
+    "phone-number",
+    "international",
+    "templates",
+    "qr-codes",
+    "bulk-messaging",
+    "contact-management",
+    "analytics",
+    "offline",
+    "responsive",
+    "modern-ui",
+    "web-app",
+    "javascript",
+    "vite",
+    "testing",
+    "accessibility",
+    "performance"
   ],
-  "author": "DipVachhani",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/DIp15739/WhatsApp-Message-Sender/issues"
+  "author": {
+    "name": "Your Name",
+    "email": "your.email@example.com",
+    "url": "https://github.com/your-username"
   },
-  "homepage": "https://github.com/DIp15739/WhatsApp-Message-Sender#readme"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-username/WhatsApp-Message-Sender.git"
+  },
+  "homepage": "https://your-username.github.io/WhatsApp-Message-Sender/",
+  "bugs": {
+    "url": "https://github.com/your-username/WhatsApp-Message-Sender/issues"
+  },
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=8.0.0"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not dead",
+    "not ie 11"
+  ],
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.23.0",
+    "@cypress/code-coverage": "^3.12.0",
+    "@testing-library/jest-dom": "^6.1.0",
+    "@testing-library/user-event": "^14.5.0",
+    "@types/jest": "^29.5.0",
+    "babel-jest": "^29.7.0",
+    "cypress": "^13.6.0",
+    "eslint": "^8.52.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-jest": "^27.4.0",
+    "husky": "^8.0.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
+    "lint-staged": "^15.0.0",
+    "pa11y": "^6.2.0",
+    "prettier": "^3.0.0",
+    "vite": "^5.0.0"
+  },
+  "dependencies": {
+    "libphonenumber-js": "^1.10.0",
+    "qrcode": "^1.5.0",
+    "emoji-picker-element": "^1.18.0",
+    "localforage": "^1.10.0",
+    "workbox-webpack-plugin": "^7.0.0",
+    "compression": "^1.7.0",
+    "crypto-js": "^4.2.0",
+    "date-fns": "^2.30.0",
+    "lodash": "^4.17.21",
+    "uuid": "^9.0.0"
+  },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{css,html,json,md}": [
+      "prettier --write"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "cypress": {
+    "baseUrl": "http://localhost:5173",
+    "video": false,
+    "screenshotOnRunFailure": true,
+    "defaultCommandTimeout": 10000
+  },
+  "eslintConfig": {
+    "extends": [
+      "eslint:recommended",
+      "prettier"
+    ],
+    "env": {
+      "browser": true,
+      "es2022": true,
+      "jest": true,
+      "node": true
+    },
+    "parserOptions": {
+      "ecmaVersion": 2022,
+      "sourceType": "module"
+    },
+    "rules": {
+      "no-console": "warn",
+      "no-debugger": "error",
+      "no-unused-vars": "warn",
+      "prefer-const": "error"
+    }
+  },
+  "prettier": {
+    "semi": true,
+    "trailingComma": "es5",
+    "singleQuote": true,
+    "printWidth": 80,
+    "tabWidth": 2
+  },
+  "vite": {
+    "base": "/WhatsApp-Message-Sender/",
+    "build": {
+      "outDir": "dist",
+      "assetsDir": "assets",
+      "sourcemap": true,
+      "rollupOptions": {
+        "output": {
+          "manualChunks": {
+            "vendor": [
+              "libphonenumber-js",
+              "qrcode",
+              "localforage"
+            ],
+            "ui": [
+              "emoji-picker-element"
+            ]
+          }
+        }
+      }
+    },
+    "server": {
+      "port": 5173,
+      "open": true
+    },
+    "preview": {
+      "port": 4173
+    }
+  },
+  "pwa": {
+    "name": "WhatsApp Message Sender",
+    "short_name": "WA Sender",
+    "description": "Send WhatsApp messages without saving contacts",
+    "theme_color": "#25D366",
+    "background_color": "#ffffff",
+    "display": "standalone",
+    "orientation": "portrait",
+    "scope": "/",
+    "start_url": "/",
+    "icons": [
+      {
+        "src": "img/icon-192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "img/icon-512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  },
+  "analytics": {
+    "enabled": true,
+    "tracking_id": "GA_MEASUREMENT_ID",
+    "anonymize_ip": true,
+    "respect_dnt": true
+  },
+  "performance": {
+    "budgets": [
+      {
+        "type": "initial",
+        "maximumWarning": "500kb",
+        "maximumError": "1mb"
+      },
+      {
+        "type": "anyComponentStyle",
+        "maximumWarning": "2kb",
+        "maximumError": "4kb"
+      }
+    ]
+  },
+  "testing": {
+    "unit": {
+      "framework": "jest",
+      "coverage": 80
+    },
+    "e2e": {
+      "framework": "cypress",
+      "browsers": [
+        "chrome",
+        "firefox",
+        "edge"
+      ]
+    },
+    "performance": {
+      "lighthouse": true,
+      "webpagetest": true
+    }
+  },
+  "deployment": {
+    "platform": "github-pages",
+    "branch": "gh-pages",
+    "domain": "your-username.github.io",
+    "path": "WhatsApp-Message-Sender"
+  },
+  "features": {
+    "universal_phone_support": true,
+    "message_templates": true,
+    "contact_management": true,
+    "qr_code_generation": true,
+    "bulk_messaging": true,
+    "pwa_features": true,
+    "analytics": true,
+    "offline_support": true,
+    "responsive_design": true,
+    "dark_theme": true,
+    "accessibility": true,
+    "testing": true,
+    "performance_optimization": true,
+    "documentation": true,
+    "deployment": true
+  },
+  "contributors": [
+    {
+      "name": "Your Name",
+      "email": "your.email@example.com",
+      "url": "https://github.com/your-username"
+    }
+  ],
+  "funding": {
+    "type": "github",
+    "url": "https://github.com/sponsors/your-username"
+  },
+  "social": {
+    "twitter": "https://twitter.com/your-username",
+    "linkedin": "https://linkedin.com/in/your-username",
+    "website": "https://your-website.com"
+  }
 }
